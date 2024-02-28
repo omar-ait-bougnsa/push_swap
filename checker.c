@@ -67,6 +67,8 @@ void	checker(t_node **a, t_node **b)
 {
 	char	*str;
 
+	if (*a == NULL)
+	 return ;
 	str = get_next_line(0);
 	while (str != NULL)
 	{
@@ -83,7 +85,7 @@ void	checker(t_node **a, t_node **b)
 		else if (check_other(a, b, str) == 1)
 		{
 			free(str);
-			return ;
+			exit(0);
 		}
 		free(str);
 		str = get_next_line(0);
@@ -106,11 +108,12 @@ int	main(int ac, char **av)
 		av = ft_split(str, ' ');
 		a = apend_t_node(av);
 		check_dabel(&a);
-		if (a != NULL)
-			checker(&a, &b);
+		checker(&a, &b);
+		if (a == NULL && b == NULL)
+			return (0);
 		if (a != NULL && b == NULL && check_sorted(a) == 0)
 			write(1, "OK\n", 3);
-		else if (a != NULL)
+		else 
 			write(1, "KO\n", 3);
 		ft_free(&a);
 		ft_free(&b);

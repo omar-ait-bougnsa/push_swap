@@ -19,8 +19,6 @@ bonus : $(BNS)
 
 $(BNS) : $(OBJB)
 		$(CC) $(FLAGS) -o $(BNS) $(OBJB)
-$(OBJB) : %.o : %.c
-		$(CC) $(FLAGS) -c $< -o $@
 
 clean :
 		rm -f $(OBJ) $(OBJB)
